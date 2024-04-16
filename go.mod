@@ -1,4 +1,4 @@
-module github.com/dmitriyGarden/consul-leader-election
+module github.com/arturmon/consul-leader-election
 
 go 1.18
 

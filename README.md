@@ -16,7 +16,7 @@ This package provides leader election through consul
 
     import(
         "github.com/hashicorp/consul/api"
-        "github.com/dmitriyGarden/consul-leader-election"
+        "github.com/arturmon/consul-leader-election"
         "fmt"
     )
     type notify struct {

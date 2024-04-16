@@ -21,7 +21,7 @@ install:
   - unzip ./consul_${CONSUL_VERSION}_linux_amd64.zip
   - cp ./consul ${GOPATH}/bin/consul
 
-go_import_path: github.com/dmitriyGarden/consul-leader-election
+go_import_path: github.com/arturmon/consul-leader-election
 
 script:
   - make lint
