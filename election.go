@@ -26,6 +26,7 @@ type Election struct {
 	Checks           []string    // Slice of associated health checks
 	leader           bool        // Flag of a leader
 	Kv               string      // Key in Consul kv
+	sessionName      string      // Name of session
 	sessionID        string      // Id of session
 	logLevel         uint8       //  Log level LogDisable|LogError|LogInfo|LogDebug
 	inited           bool        // Flag of init.
@@ -89,6 +90,7 @@ func NewElection(c *ElectionConfig) *Election {
 
 func (e *Election) createSession() (err error) {
 	ses := &api.SessionEntry{
+		Name:      e.sessionName,
 		Checks:    e.Checks,
 		TTL:       (3 * e.CheckTimeout).String(),
 		LockDelay: e.SessionLockDelay,
@@ -191,7 +193,7 @@ func (e *Election) background() {
 	}
 }
 
-//ReElection start re-election
+// ReElection start re-election
 func (e *Election) ReElection() error {
 	s, err := e.getKvSession()
 	if s != "" {
