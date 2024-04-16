@@ -49,6 +49,7 @@ type Notifier interface {
 type ElectionConfig struct {
 	Client           *api.Client // Consul client
 	Checks           []string    // Slice of associated health checks
+	Name             string      // Name in Consul Session
 	Key              string      // Key in Consul KV
 	LogLevel         uint8       // Log level LogDisable|LogError|LogInfo|LogDebug
 	LogPrefix        string      // Prefix for a log
@@ -76,6 +77,7 @@ func NewElection(c *ElectionConfig) *Election {
 		Client:           c.Client,
 		Checks:           append(c.Checks, "serfHealth"),
 		leader:           false,
+		sessionName:      c.Name,
 		Kv:               c.Key,
 		CheckTimeout:     c.CheckTimeout,
 		SessionLockDelay: c.SessionLockDelay,
